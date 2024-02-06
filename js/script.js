@@ -14,7 +14,10 @@ function Book(title, author, pages) {
 }
 
 let addNewBook = (event) => {
-  event.preventDefault();
+  if (title.value === "" || author.value === "" || pages.value === "") {
+    alert("Please fill in all the fields");
+    return;
+  }
   const book = new Book(title.value, author.value, pages.value);
   library.push(book);
   clearInputs();
