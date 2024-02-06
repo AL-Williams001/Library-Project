@@ -13,6 +13,15 @@ function Book(title, author, pages) {
   this.pages = pages;
 }
 
+const titleCase = (str) => {
+  str = str.toLowerCase();
+  str = str.split(" ");
+  for (let i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+  }
+  return str.join(" ");
+};
+
 let addNewBook = (event) => {
   event.preventDefault();
 
@@ -20,7 +29,11 @@ let addNewBook = (event) => {
     alert("Please fill in all the fields");
     return;
   }
-  const book = new Book(title.value, author.value, pages.value);
+
+  const titleInput = titleCase(title.value);
+  const authorInput = titleCase(author.value);
+
+  const book = new Book(titleInput, authorInput, pages.value);
 
   clearInputs();
   closeModal();
